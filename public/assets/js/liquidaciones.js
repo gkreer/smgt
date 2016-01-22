@@ -1,9 +1,5 @@
 
-jQuery(document).ready(function()
-{
-  jQuery('.actualizaEfectivo').change(
-             
-    function actualizarEfectivo()
+	function actualizarEfectivo()
 	{
 
 		var total = parseInt(jQuery('#totalRecaudado').val());
@@ -12,25 +8,18 @@ jQuery(document).ready(function()
 		var credito = parseInt(jQuery('#montoCredito').val());
 
 		var efectivo = total + aportes - vales - credito;
-		jQuery('#montoEfectivo').val(efectivo);
+		jQuery('#montoEfectivo').val(efectivo.toFixed(2));
 	}
-         );
 
-  jQuery('.actualizaSalario').change(
-             
-    function actualizarSalario()
+	function actualizarSalario()
 	{
 		var total = parseInt(jQuery('#totalRecaudado').val());		
 		var salario = total * 0.29;
 
 		jQuery('#salario').val(salario.toFixed(2));
 	}
-         );
 
-	
-	jQuery('.actualizaGastos').change(
-             
-    function actualizarGastos()
+	function actualizarGastos()
 	{
 		var salario = parseInt(jQuery('#salario').val());
 		var aceite = parseInt(jQuery('#gastoAceite').val());
@@ -46,11 +35,8 @@ jQuery(document).ready(function()
 		jQuery('#totalGastos').val(gastosTotales.toFixed(2));
 
 	}
-         );
-	
-		jQuery('.actualizaTotales').change(
-             
-    function actualizarTotales()
+
+	function actualizarTotales()
 	{
 		var totalRec = parseInt(jQuery('#totalRecaudado').val());
 		var totalGastos = parseInt(jQuery('#montoGastosTotal').val());
@@ -64,11 +50,8 @@ jQuery(document).ready(function()
 		jQuery('#liquido').val(liquido.toFixed(2));
 
 	}
-         );
 
-  jQuery('.actualizaPesoPorKm').change(
-             
-    function actualizarPesoPorKm()
+	function actualizarPesoPorKm()
 	{
 		var total = parseInt(jQuery('#totalRecaudado').val());
 		var kmsTotales = parseInt(jQuery('#kmsTotalSalida').val());		
@@ -78,6 +61,56 @@ jQuery(document).ready(function()
 
 		jQuery('#pesoPorKm').val(pesoPorKm.toFixed(2));
 	}
+
+
+jQuery(document).ready(function()
+{
+	actualizarEfectivo();
+	actualizarGastos();
+	actualizarTotales();
+	actualizarPesoPorKm();
+
+  jQuery('.actualizaEfectivo').change(
+     	function()
+     	{
+     		actualizarEfectivo();
+     	}        
+    
          );
+
+  jQuery('.actualizaSalario').change(
+             
+    function()
+	{
+		actualizarSalario();
+	}
+         );
+
+	
+	jQuery('.actualizaGastos').change(
+             
+    function()
+	{
+		actualizarGastos();
+
+	}
+         );
+	
+	jQuery('.actualizaTotales').change(
+             
+    function()
+	{
+		actualizarTotales();
+
+	}
+         );
+
+  jQuery('.actualizaPesoPorKm').change(
+             
+    function(){
+
+    	actualizarPesoPorKm();
+		
+	});
 });
 
