@@ -12,7 +12,7 @@
                   </td>
                   <td>
                     {!! Form::label('kmsAlqEntrada', 'Monto $') !!}
-                    {!! Form::number('montoCargaCombustible', 0, ['class' => 'form-control actualizaTotales', 'id' => 'montoCargaCombustible']) !!}
+                    {!! Form::number('montoCargaCombustible', null, ['class' => 'form-control actualizaTotales', 'id' => 'montoCargaCombustible']) !!}
                   </td>
                   <td>
                     {!! Form::label('labelLtsCargaCombustible', 'Litros') !!}
