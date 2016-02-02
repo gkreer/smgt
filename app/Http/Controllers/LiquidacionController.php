@@ -21,8 +21,9 @@ class LiquidacionController extends Controller
      */
     public function index()
     {
+        $choferes = Chofer::all();
         $liquidaciones = Liquidacion::paginate();
-        return view('liquidaciones.index', compact('liquidaciones'));
+        return view('liquidaciones.index', compact('liquidaciones', 'choferes'));
     }
 
     /**

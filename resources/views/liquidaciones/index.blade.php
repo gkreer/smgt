@@ -8,6 +8,13 @@
 				<div class="panel-heading">Liquidaciones</div>
 
 				<div class="panel-body">
+					{!! Form::open(['route' => 'liquidaciones.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
+				  <div class="form-group">
+				    {!! Form::select('taxi_id',config('options.taxis'), null, ['class' => 'form-control']) !!}
+				    {!! Form::select('chofer_id', $choferes->lists('nombre_completo', 'id'), null, ['class' => 'form-control']) !!}
+				    {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
+				  </div>
+				{!! Form::close() !!}				
 
 				<p>
 			        <a class="btn btn-info" href="{{ route('liquidaciones.create') }}" role="button">

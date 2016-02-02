@@ -9,6 +9,13 @@
 
 				<div class="panel-body">
 
+				{!! Form::open(['route' => 'choferes.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
+				  <div class="form-group">
+				    {!! Form::text('nombre',null, ['class' => 'form-control', 'placeholder' => 'Nombre del Chofer']) !!}
+				  </div>
+				  <button type="submit" class="btn btn-default">Buscar</button>
+				{!! Form::close() !!}
+
 				<p>
 			        <a class="btn btn-info" href="{{ route('choferes.create') }}" role="button">
 			            Nuevo Chofer
@@ -38,9 +45,6 @@
 							Teléfono
 							</th>
 							<th>
-							Teléfono 2
-							</th>
-							<th>
 							Acciones
 							</th>
 						</tr>
@@ -63,9 +67,6 @@
 							</td>
 							<td>
 							{{ $chofer->direccion }}
-							</td>
-							<td>
-							{{ $chofer->telefono1 }}
 							</td>
 							<td>
 							{{ $chofer->telefono1 }}
