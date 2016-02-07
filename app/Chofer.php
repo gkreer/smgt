@@ -14,7 +14,7 @@ class Chofer extends Model
     protected $table = 'chofer';
 
     protected $fillable = ['nombre', 'nombre2', 'apellido', 'apellido2', 'direccion', 'telefono1', 'telefono2', 
-    						'fechaIngresoReal', 'cedulaIdentidad', ];
+    						'fechaIngresoReal', 'cedulaIdentidad', 'activo' ];
 
     public function scopeNombre($query, $nombre)
 	{
@@ -24,7 +24,7 @@ class Chofer extends Model
 
 	public function getNombreCompletoAttribute()
     {
-        return ucfirst(strtolower($this->attributes['nombre'])) . ' ' . ucfirst(strtolower($this->attributes['apellido']));
+        return ucfirst(strtolower($this->attributes['apellido'])) . ' ' . ucfirst(strtolower($this->attributes['nombre']));
     }
 }
 

@@ -38,3 +38,9 @@
               {!! Form::label('fechaIngresoReal', 'Fecha Ingreso Real') !!}
               {!! Form::date('fechaIngresoReal', null, ['class' => 'form-control']) !!}
             </div>
+            <div class="form-group">
+              {!! Form::label('fechaIngresoReal', 'Activo') !!}
+              {!! Form::checkbox('activo', 'value' ,['class' => 'form-control']) !!}
+            </div>
+
+            

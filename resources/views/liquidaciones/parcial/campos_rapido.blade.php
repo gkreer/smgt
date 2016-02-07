@@ -12,7 +12,7 @@
                   </td>
                   <td>
                     {!! Form::label('fechaLiquidacion', 'Fecha') !!}
-                    {!! Form::date('fecha', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                    {!! Form::date('fecha', $liquidacion->fecha, ['class' => 'form-control']) !!}
                   </td>
                   <td>
                     {!! Form::label('turno', 'Turno') !!}

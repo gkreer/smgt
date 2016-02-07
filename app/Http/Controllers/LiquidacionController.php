@@ -21,9 +21,10 @@ class LiquidacionController extends Controller
      */
     public function index()
     {
-        $choferes = Chofer::all();
-        $liquidaciones = Liquidacion::paginate();
-        return view('liquidaciones.index', compact('liquidaciones', 'choferes'));
+        $choferes = Chofer::where('activo', '1')->orderBy('apellido','ASC')->get();
+        $taxis = Taxi::orderBy('matricula','ASC')->get();
+        $liquidaciones = Liquidacion::orderBy('fecha', 'DESC')->paginate();
+        return view('liquidaciones.index', compact('liquidaciones', 'choferes', 'taxis'));
     }
 
     /**
