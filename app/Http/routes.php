@@ -39,3 +39,4 @@ Route::post('password/reset', ['as' => 'password/postReset', 'uses' =>  'Auth\Pa
 Route::resource('taxis', 'TaxiController');
 Route::resource('choferes', 'ChoferController');
 Route::resource('liquidaciones', 'LiquidacionController');
+Route::resource('gastos', 'GastoController');
