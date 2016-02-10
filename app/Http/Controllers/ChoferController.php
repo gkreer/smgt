@@ -82,6 +82,7 @@ class ChoferController extends Controller
     {
         $chofer = Chofer::findOrFail($id);
         $chofer->fill($request->all());
+        $chofer->activo = \Input::has('activo') ? true : false;
         $chofer->save();
 
         return \Redirect::route('choferes.index');

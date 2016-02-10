@@ -15,6 +15,7 @@
 					<li><a href="/choferes">Choferes</a></li>
 					<li><a href="/taxis">Taxis</a></li>
 					<li><a href="/gastos">Gastos</a></li>
+					<li><a href="/liquidaciones">Combustible</a></li>
 					<li><a href="/liquidaciones">Informes</a></li>
 
 				</ul>

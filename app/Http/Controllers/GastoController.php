@@ -19,7 +19,8 @@ class GastoController extends Controller
     public function index()
     {
         $gastos = Gasto::paginate();
-        return view('gastos.index', compact('gastos'));
+        $taxis = Taxi::orderBy('matricula','ASC')->get();
+        return view('gastos.index', compact('gastos','taxis'));
     }
 
     /**

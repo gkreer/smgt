@@ -11,9 +11,11 @@
 
 				{!! Form::open(['route' => 'gastos.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
 				  <div class="form-group">
-				    {!! Form::text('nombre',null, ['class' => 'form-control', 'placeholder' => 'Nombre del Chofer']) !!}
+				    {!! Form::select('taxi_id',$taxis->lists('matricula', 'id'), null, ['class' => 'form-control']) !!}
+				    {!! Form::selectMonth('mes', \Carbon\Carbon::now()->month,['class' => 'form-control']) !!}
+				    {!! Form::selectYear('año', 2010, 2030, \Carbon\Carbon::now()->year,['class' => 'form-control']) !!}				    
 				  </div>
-				  <button type="submit" class="btn btn-default">Buscar</button>
+				  
 				{!! Form::close() !!}
 
 				<p>
