@@ -24,6 +24,7 @@
     {!! Html::script('assets/js/bootstrap.min.js') !!}
 
     {!! Html::script('assets/js/liquidaciones.js') !!}
+    {!! Html::script('assets/js/gastos.js') !!}
 
 </body>
 </html>
