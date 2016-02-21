@@ -10,6 +10,7 @@
 				<div class="panel-body">
 
 				{!! Form::open(['route' => 'gastos.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
+				  
 				  <div class="form-group">
 				    {!! Form::select('taxi_id',$taxis->lists('matricula', 'id'), null, ['class' => 'form-control']) !!}
 				    {!! Form::selectMonth('mes', \Carbon\Carbon::now()->month,['class' => 'form-control']) !!}
@@ -20,7 +21,7 @@
 
 				<p>
 			        <a class="btn btn-info" href="{{ route('gastos.create') }}" role="button">
-			            Nuevo Gasto
+			            Ingresar Gastos Mensuales
 			        </a>
 			    </p>
 					<table class="table table-striped">
@@ -29,56 +30,44 @@
 							#
 							</th>
 							<th>
-							Nombre
+							Matricula
 							</th>
 							<th>
-							Apellido
+							Mes / Año
 							</th>
 							<th>
-							Apellido 2
+							Descripcion
 							</th>
 							<th>
-							Cédula
-							</th>
-							<th>
-							Dirección
-							</th>
-							<th>
-							Teléfono
+							Total Gastos
 							</th>
 							<th>
 							Acciones
 							</th>
 						</tr>
-						<!--@foreach ($gastos as $gasto)
+						@foreach ($gastos as $gasto)
 						<tr>
 							<td>
-							{{ $chofer->id }}
+							{{ $gasto->id }}
 							</td>
 							<td>
-							{{ $chofer->nombre }}
+							{{ $gasto->taxi->matricula }}
 							</td>
 							<td>
-							{{ $chofer->apellido }}
+							{{ $gasto->mes }} / {{ $gasto->anio }}
 							</td>
 							<td>
-							{{ $chofer->apellido2 }}
+							{{ $gasto->descripcion }}
 							</td>
 							<td>
-							{{ $chofer->cedulaIdentidad }}
-							</td>
-							<td>
-							{{ $chofer->direccion }}
-							</td>
-							<td>
-							{{ $chofer->telefono1 }}
+							{{ $gasto->montoPesos }}
 							</td>
 							<td>
 								<a href="{{ route('gastos.edit', $gasto)}}"> Editar</a>
 								<a href=""> Eliminar </a>
 							</td>
 						</tr>
-						@endforeach !-->
+						@endforeach
 					</table>
 					{!! $gastos->render() !!}
 				</div>

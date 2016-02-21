@@ -18,7 +18,10 @@ class GastoController extends Controller
      */
     public function index()
     {
-        $gastos = Gasto::paginate();
+        $gastos = Gasto::orderBy('anio', 'desc')
+                ->groupBy('anio','mes', 'taxi_id')
+                ->paginate();
+        //$gastos = Gasto::paginate();
         $taxis = Taxi::orderBy('matricula','ASC')->get();
         return view('gastos.index', compact('gastos','taxis'));
     }
@@ -30,7 +33,10 @@ class GastoController extends Controller
      */
     public function create()
     {
-        return view('gastos.create');
+        $gastos = Gasto::paginate();
+        $taxis = Taxi::orderBy('matricula','ASC')->get();
+        
+        return view('gastos.create', compact('gastos','taxis'));
     }
 
     /**
@@ -38,10 +44,24 @@ class GastoController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        $gasto = new Gasto($request->all());
-        $gasto->save();
+        $cant_gastos = 0;
+        while (null !== $request->get('descripcion'.$cant_gastos)) {
+
+            $gasto = new Gasto();
+
+            $gasto->descripcion = $request->get('descripcion'.$cant_gastos);
+            $gasto->montoPesos = $request->get('monto'.$cant_gastos);
+            $gasto->mes = $request->get('mes');
+            $gasto->anio = $request->get('anio');
+            $gasto->taxi_id = $request->get('taxi_id');
+            
+            $gasto->save();
+
+            $cant_gastos++;
+        }
+
 
         return \Redirect::route('gastos.index');
     }
@@ -66,9 +86,11 @@ class GastoController extends Controller
     public function edit($id)
     {
         $gasto = Gasto::findOrFail($id);
+        $gastos = Gasto::where('taxi_id', $gasto->taxi_id)
+            ->where('anio', $gasto->anio)
+            ->where('mes', $gasto->mes)->get();
 
-        //dd($gasto);
-        return view('gastos.edit', compact('gasto'));
+        return view('gastos.edit', compact('gastos'));
     }
 
     /**

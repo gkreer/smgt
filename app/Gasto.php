@@ -8,6 +8,12 @@ class Gasto extends Model
 {
     protected $table = 'gasto';
 
-    protected $fillable = ['nombre', 'nombre2', 'apellido', 'apellido2', 'direccion', 'telefono1', 'telefono2', 
-    						'fechaIngresoReal', 'cedulaIdentidad', 'activo' ];
+    protected $fillable = ['descripcion', 'montoPesos', 'mes', 'anio', 'taxi_id' ];
+
+	public function taxi()
+    {
+        return $this->belongsTo('App\Taxi');
+    }
 }
+
+    
