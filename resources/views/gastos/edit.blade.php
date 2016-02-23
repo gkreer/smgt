@@ -9,9 +9,9 @@
 
         <div class="panel-body">
 
-        {!! Form::model($gasto, ['route' => ['gastos.update', $gasto], 'method' => 'PUT']) !!}
+        {!! Form::model($gastos, ['route' => ['gastos.update', $gastos], 'method' => 'PUT']) !!}
 
-            @include('gastos.parcial.campos')
+            @include('gastos.parcial.campos_edit')
 
             <button type="submit" class="btn btn-primary">Actualizar</button>
             
