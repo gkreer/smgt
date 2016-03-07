@@ -8,11 +8,11 @@
                   </td>
                   <td>
                     {!! Form::label('chofer', 'Chofer') !!}
-                    {!! Form::select('chofer_id', $listaChoferes,  null, ['class' => 'form-control']) !!}
+                    {!! Form::select('chofer_id', $choferes,  null, ['class' => 'form-control']) !!}
                   </td>
                   <td>
                     {!! Form::label('fechaLiquidacion', 'Fecha') !!}
-                    {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
+                    {!! Form::date('fecha', $liquidacion->fecha, ['class' => 'form-control']) !!}
                   </td>
                   <td>
                     {!! Form::label('turno', 'Turno') !!}

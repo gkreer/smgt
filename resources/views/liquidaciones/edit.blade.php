@@ -11,7 +11,7 @@
 
         {!! Form::model( $liquidacion, ['route' => ['liquidaciones.update', $liquidacion], 'method' => 'PUT']) !!}
 
-            @include('liquidaciones.parcial.campos_rapido')
+            @include('liquidaciones.parcial.campos_rapido_edit')
 
             <button type="submit" class="btn btn-primary">Actualizar</button>
             

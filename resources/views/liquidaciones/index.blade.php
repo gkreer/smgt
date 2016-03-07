@@ -10,8 +10,8 @@
 				<div class="panel-body">
 					{!! Form::open(['route' => 'liquidaciones.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
 				  <div class="form-group">
-				    {!! Form::select('taxi_id',$taxis->lists('matricula', 'id'), null, ['class' => 'form-control']) !!}
-				    {!! Form::select('chofer_id', $choferes->lists('nombre_completo', 'id'), null, ['class' => 'form-control']) !!}
+				    {!! Form::select('taxi_id',$listaTaxis, null, ['class' => 'form-control', 'id' => 'listaTaxis']) !!}
+				    {!! Form::select('chofer_id', $listaChoferes, null, ['class' => 'form-control', 'id' => 'listaChoferes']) !!}
 				    {!! Form::date('fecha_desde', null , ['class' => 'form-control']) !!}
 				    {!! Form::date('fecha_hasta', null , ['class' => 'form-control']) !!}
 				  </div>

@@ -24,7 +24,9 @@ class LiquidacionController extends Controller
         $choferes = Chofer::where('activo', '1')->orderBy('apellido','ASC')->get();
         $taxis = Taxi::orderBy('matricula','ASC')->get();
         $liquidaciones = Liquidacion::orderBy('fecha', 'DESC')->paginate();
-        return view('liquidaciones.index', compact('liquidaciones', 'choferes', 'taxis'));
+        $listaTaxis = array_merge(array('' => 'Taxi...') ,$taxis->lists('matricula', 'id')->toArray());
+        $listaChoferes = array_merge(array('' => 'Chofer...') , $choferes->lists('nombre_completo', 'id')->toArray());
+        return view('liquidaciones.index', compact('liquidaciones', 'choferes', 'taxis', 'listaTaxis', 'listaChoferes'));
     }
 
     /**
@@ -35,10 +37,12 @@ class LiquidacionController extends Controller
     public function create()
     {
         $taxis = Taxi::lists('matricula', 'id');
-        $choferes = Chofer::lists('apellido', 'id');
+        $choferes = Chofer::where('activo', '1')->orderBy('apellido','ASC')->get();
+        $listaChoferes = array_merge(array('' => 'Elegir chofer...') , $choferes->lists('nombre_completo', 'id')->toArray());
 
         
-        return view('liquidaciones.create')->with(['taxis'=> $taxis, 'choferes' => $choferes]);
+        return view('liquidaciones.create')->with(['taxis'=> $taxis, 'choferes' => $choferes, 
+            'listaChoferes' => $listaChoferes]);
     }
 
     /**
