@@ -18,12 +18,13 @@ class GastoController extends Controller
      */
     public function index()
     {
-        $gastos = Gasto::orderBy('anio', 'desc')
+        $gastos = Gasto::selectRaw('sum(montoPesos) as sumaGastos, id, fecha, mes, anio, descripcion, montoPesos, taxi_id')
+                ->orderBy('anio', 'desc')
                 ->groupBy('anio','mes', 'taxi_id')
-                ->paginate();
-        //$gastos = Gasto::paginate();
+                ->paginate();        
         $taxis = Taxi::orderBy('matricula','ASC')->get();
-        return view('gastos.index', compact('gastos','taxis'));
+        $listaTaxis = array_merge(array('' => 'Todos') ,$taxis->lists('matricula', 'id')->toArray());
+        return view('gastos.index', compact('gastos','taxis','listaTaxis'));
     }
 
     /**
@@ -74,7 +75,20 @@ class GastoController extends Controller
      */
     public function show($id)
     {
-        //
+        $gasto = Gasto::findOrFail($id);
+        $gastos = Gasto::where('taxi_id', $gasto->taxi_id)
+            ->where('anio', $gasto->anio)
+            ->where('mes', $gasto->mes)->get();
+
+        $totalGastos = Gasto::selectRaw('sum(montoPesos) as sumaGastos, id, fecha, mes, anio,  montoPesos, taxi_id')
+            ->where('taxi_id', $gasto->taxi_id)
+            ->where('anio', $gasto->anio)
+            ->where('mes', $gasto->mes)
+            ->orderBy('anio', 'desc')
+            ->groupBy('anio','mes', 'taxi_id')->get();
+
+
+        return view('gastos.show', compact('gastos','totalGastos'));
     }
 
     /**

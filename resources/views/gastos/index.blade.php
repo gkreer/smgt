@@ -12,7 +12,7 @@
 				{!! Form::open(['route' => 'gastos.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
 				  
 				  <div class="form-group">
-				    {!! Form::select('taxi_id',$taxis->lists('matricula', 'id'), null, ['class' => 'form-control']) !!}
+				    {!! Form::select('taxi_id',$listaTaxis, null, ['class' => 'form-control', 'id' => 'listaTaxis']) !!}
 				    {!! Form::selectMonth('mes', \Carbon\Carbon::now()->month,['class' => 'form-control']) !!}
 				    {!! Form::selectYear('año', 2010, 2030, \Carbon\Carbon::now()->year,['class' => 'form-control']) !!}				    
 				  </div>
@@ -60,11 +60,12 @@
 							{{ $gasto->descripcion }}
 							</td>
 							<td>
-							{{ $gasto->montoPesos }}
+							{{ $gasto->sumaGastos }}
 							</td>
 							<td>
 								<a href="{{ route('gastos.edit', $gasto)}}"> Editar</a>
 								<a href=""> Eliminar </a>
+								<a href="{{ route('gastos.show', $gasto)}}"> Ver</a>
 							</td>
 						</tr>
 						@endforeach
