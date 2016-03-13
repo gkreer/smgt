@@ -62,7 +62,7 @@
               
               </td>
               <td>
-              {{ $totalGastos->montoPesos }}
+              {{ $totalGastos->sumaGastos }}
               </td>
               
             </tr>

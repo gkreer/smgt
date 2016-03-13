@@ -76,6 +76,7 @@ class GastoController extends Controller
     public function show($id)
     {
         $gasto = Gasto::findOrFail($id);
+        
         $gastos = Gasto::where('taxi_id', $gasto->taxi_id)
             ->where('anio', $gasto->anio)
             ->where('mes', $gasto->mes)->get();
@@ -85,8 +86,9 @@ class GastoController extends Controller
             ->where('anio', $gasto->anio)
             ->where('mes', $gasto->mes)
             ->orderBy('anio', 'desc')
-            ->groupBy('anio','mes', 'taxi_id')->get();
+            ->groupBy('anio','mes', 'taxi_id')->first();
 
+        //dd($totalGastos);
 
         return view('gastos.show', compact('gastos','totalGastos'));
     }
