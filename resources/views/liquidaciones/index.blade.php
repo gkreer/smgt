@@ -12,8 +12,8 @@
 				  <div class="form-group">
 				    {!! Form::select('taxi_id',$listaTaxis, null, ['class' => 'form-control', 'id' => 'listaTaxis']) !!}
 				    {!! Form::select('chofer_id', $listaChoferes, null, ['class' => 'form-control', 'id' => 'listaChoferes']) !!}
-				    {!! Form::date('fecha_desde', null , ['class' => 'form-control']) !!}
-				    {!! Form::date('fecha_hasta', null , ['class' => 'form-control']) !!}
+				    {!! Form::date('fecha_desde', null , ['class' => 'form-control', 'id' => 'fechaDesde']) !!}
+				    {!! Form::date('fecha_hasta', null , ['class' => 'form-control', 'id' => 'fechaHasta']) !!}
 				  </div>
 				{!! Form::close() !!}				
 

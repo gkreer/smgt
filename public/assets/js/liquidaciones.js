@@ -112,5 +112,22 @@ jQuery(document).ready(function()
     	actualizarPesoPorKm();
 		
 	});
+
+  jQuery('#listaTaxis').on('change', function(e){
+    jQuery(this).closest('form').submit();
+	});
+  
+  jQuery('#listaChoferes').on('change', function(e){
+    jQuery(this).closest('form').submit();
+	});
+  
+  jQuery('#fechaDesde').on('change', function(e){
+    jQuery(this).closest('form').submit();
+	});
+  
+  jQuery('#fechaHasta').on('change', function(e){
+    jQuery(this).closest('form').submit();
+	});
+  
 });
 

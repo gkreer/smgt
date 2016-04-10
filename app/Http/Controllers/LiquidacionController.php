@@ -19,11 +19,15 @@ class LiquidacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $choferes = Chofer::where('activo', '1')->orderBy('apellido','ASC')->get();
         $taxis = Taxi::orderBy('matricula','ASC')->get();
-        $liquidaciones = Liquidacion::orderBy('fecha', 'DESC')->paginate();
+        $liquidaciones = Liquidacion::matricula($request->get('taxi_id'))
+                        ->choferid($request->get('chofer_id'))
+                        ->fechaDesde($request->get('fecha'))
+                        ->fechaHasta($request->get('fecha'))
+                        ->orderBy('fecha', 'DESC')->paginate();
         $listaTaxis = array_merge(array('' => 'Taxi...') ,$taxis->lists('matricula', 'id')->toArray());
         $listaChoferes = array_merge(array('' => 'Chofer...') , $choferes->lists('nombre_completo', 'id')->toArray());
         return view('liquidaciones.index', compact('liquidaciones', 'choferes', 'taxis', 'listaTaxis', 'listaChoferes'));

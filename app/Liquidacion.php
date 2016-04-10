@@ -56,7 +56,29 @@ class Liquidacion extends Model
         return number_format($value, 2);
     }
     
+    public function scopeFechaDesde($query, $fechaDesde)
+    {
+        if(trim($fechaDesde) != "")
+            $query->where('fecha', '>=',$fechaDesde);
+    }
     
+    public function scopeFechaHasta($query, $fechaHasta)
+    {
+        if(trim($fechaHasta) != "")
+        $query->where('fecha', '=<',$fechaHasta);
+    }
+
+    public function scopeMatricula($query, $taxi_id)
+    {
+        if(trim($taxi_id) != "")
+            $query->where('taxi_id', $taxi_id);
+    }
+
+    public function scopeChoferid($query, $chofer_id)
+    {
+        if(trim($chofer_id) != "")
+            $query->where('chofer_id', $chofer_id);
+    }
 
 
 
