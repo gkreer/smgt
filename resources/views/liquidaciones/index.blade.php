@@ -70,7 +70,7 @@
 								{{ $liquidacion->turno }}
 							</td>
 							<td>
-								{{ $liquidacion->chofer->nombre }} {{ $liquidacion->chofer->apellido }}
+								{{ $liquidacion->chofer->nombre_completo }}
 							</td>
 							<td>
 								{{ number_format($liquidacion->totalRecaudado,2) }}

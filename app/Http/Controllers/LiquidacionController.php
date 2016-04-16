@@ -28,8 +28,10 @@ class LiquidacionController extends Controller
                         ->fechaDesde($request->get('fecha'))
                         ->fechaHasta($request->get('fecha'))
                         ->orderBy('fecha', 'DESC')->paginate();
-        $listaTaxis = array_merge(array('' => 'Taxi...') ,$taxis->lists('matricula', 'id')->toArray());
-        $listaChoferes = array_merge(array('' => 'Chofer...') , $choferes->lists('nombre_completo', 'id')->toArray());
+        
+        $listaTaxis =  array('' => 'Taxi...') + $taxis->lists('matricula', 'id')->toArray();
+        $listaChoferes = array('' => 'Chofer...') + $choferes->lists('nombre_completo', 'id')->toArray();
+
         return view('liquidaciones.index', compact('liquidaciones', 'choferes', 'taxis', 'listaTaxis', 'listaChoferes'));
     }
 
