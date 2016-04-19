@@ -8,7 +8,7 @@
 				<div class="panel-heading">Liquidaciones</div>
 
 				<div class="panel-body">
-					{!! Form::open(['route' => 'liquidaciones.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
+					{!! Form::model(Request::all(), ['route' => 'liquidaciones.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
 				  <div class="form-group">
 				    {!! Form::select('taxi_id',$listaTaxis, null, ['class' => 'form-control', 'id' => 'listaTaxis']) !!}
 				    {!! Form::select('chofer_id', $listaChoferes, null, ['class' => 'form-control', 'id' => 'listaChoferes']) !!}
@@ -97,7 +97,7 @@
 						</tr>
 						@endforeach
 					</table>
-					{!! $liquidaciones->render() !!}
+					{!! $liquidaciones->appends(Request::only(['taxi_id', 'chofer_id', 'fecha_desde', 'fecha_hasta']))->render() !!}
 				</div>
 			</div>
 		</div>

@@ -25,8 +25,8 @@ class LiquidacionController extends Controller
         $taxis = Taxi::orderBy('matricula','ASC')->get();
         $liquidaciones = Liquidacion::matricula($request->get('taxi_id'))
                         ->choferid($request->get('chofer_id'))
-                        ->fechaDesde($request->get('fecha'))
-                        ->fechaHasta($request->get('fecha'))
+                        ->fechaDesde($request->get('fecha_desde'))
+                        ->fechaHasta($request->get('fecha_hasta'))
                         ->orderBy('fecha', 'DESC')->paginate();
         
         $listaTaxis =  array('' => 'Taxi...') + $taxis->lists('matricula', 'id')->toArray();

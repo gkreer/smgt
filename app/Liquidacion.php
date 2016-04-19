@@ -65,7 +65,7 @@ class Liquidacion extends Model
     public function scopeFechaHasta($query, $fechaHasta)
     {
         if(trim($fechaHasta) != "")
-        $query->where('fecha', '=<',$fechaHasta);
+            $query->where('fecha', '<=', $fechaHasta);
     }
 
     public function scopeMatricula($query, $taxi_id)
