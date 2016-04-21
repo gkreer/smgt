@@ -145,7 +145,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        Styde\BladePagination\ServiceProvider::class
+        Styde\BladePagination\ServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class
 
     ],
 
@@ -197,6 +198,8 @@ return [
         'Form'      => 'Collective\Html\FormFacade',
         'Html'      => 'Collective\Html\HtmlFacade',
         'Debugbar'  => 'Barryvdh\Debugbar\Facade',
+        'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'Image'     => Barryvdh\Snappy\Facades\SnappyImage::class,
     ],
 
 ];

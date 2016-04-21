@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'Auth\AuthController@getLogin');
 Route::get('home', 'HomeController@index');
 
 // Authentication routes...
@@ -35,8 +32,9 @@ Route::post('password/email', ['as' => 'password/postEmail', 'uses' => 'Auth\Pas
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', ['as' => 'password/postReset', 'uses' =>  'Auth\PasswordController@postReset']);
 
-
 Route::resource('taxis', 'TaxiController');
 Route::resource('choferes', 'ChoferController');
 Route::resource('liquidaciones', 'LiquidacionController');
 Route::resource('gastos', 'GastoController');
+
+Route::get('pdf', 'PdfController@listadoChofer');
