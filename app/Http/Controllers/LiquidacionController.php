@@ -32,7 +32,15 @@ class LiquidacionController extends Controller
         $listaTaxis =  array('' => 'Taxi...') + $taxis->lists('matricula', 'id')->toArray();
         $listaChoferes = array('' => 'Chofer...') + $choferes->lists('nombre_completo', 'id')->toArray();
 
-        return view('liquidaciones.index', compact('liquidaciones', 'choferes', 'taxis', 'listaTaxis', 'listaChoferes'));
+        $filtros = [$request->taxi_id, 
+                    $request->chofer_id, 
+                    $request->fecha_desde, 
+                    $request->fecha_hasta];
+        
+        if(count($request->query) == 0)                    
+            unset($filtros);
+        
+        return view('liquidaciones.index', compact('liquidaciones', 'choferes', 'taxis', 'listaTaxis', 'listaChoferes','filtros'));
     }
 
     /**

@@ -6,7 +6,10 @@
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-				Liquidaciones {{ $taxi->matricula }} {{ $chofer->nombre_completo }}</div>
+				<strong>Liquidaciones  {{ $chofer->nombre }} {{ $chofer->apellido }}</br>
+				{{ $taxi->matricula }} </br>
+				 {{ $fecha_desde }} -> {{ $fecha_hasta }}</strong>
+				</div>
 
 				<div class="panel-body">							
 					<table class="table table-striped">
@@ -61,8 +64,7 @@
 							</td>
 							<td>
 								{{ number_format($liquidacion->pesoPorKm, 2) }}
-							</td>
-							
+							</td>							
 						</tr>
 						@endforeach
 					</table>

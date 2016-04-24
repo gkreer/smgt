@@ -37,4 +37,7 @@ Route::resource('choferes', 'ChoferController');
 Route::resource('liquidaciones', 'LiquidacionController');
 Route::resource('gastos', 'GastoController');
 
-Route::get('pdf', 'PdfController@listadoChofer');
+//Route::get('pdf', ['as' => 'pdf', 'uses' => 'PdfController@listadoChofer']);
+
+Route::get('pdf/{taxi_id?}/{chofer_id?}/{fecha_desde?}/{fecha_hasta?}', 
+	['as' => 'pdf', 'uses' => 'PdfController@listadoChofer']);

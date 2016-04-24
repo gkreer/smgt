@@ -15,23 +15,27 @@ use App\Chofer;
 class PdfController extends Controller
 {
 
-    public function listadoChofer()
+    public function listadoChofer(Request $request)
     {
-        $chofer = Chofer::where('id', '15')->first();
-        $taxi = Taxi::where('id','7')->first();
-        $fecha_desde = '2015-11-01';
-        $fecha_hasta = '2015-11-30';
+        $taxi_id = $request->taxi_id;
+        $chofer_id = $request->chofer_id;
+        $fecha_desde = $request->fecha_desde;
+        $fecha_hasta = $request->fecha_hasta;
+        
+        $chofer = Chofer::where('id', $chofer_id)->first();
+        $taxi = Taxi::where('id',$taxi_id)->first();
 
         $liquidaciones = Liquidacion::matricula($taxi->id)
         ->choferid($chofer->id)
         ->fechaDesde($fecha_desde)
         ->fechaHasta($fecha_hasta)
-        ->orderBy('fecha', 'DESC')->get();
+        ->orderBy('fecha', 'ASC')->get();
 
         $view =  view('liquidaciones.pdf_index', 
-            compact('liquidaciones', 'chofer', 'taxi'))->render();
+            compact('liquidaciones', 'chofer', 'taxi', 'fecha_desde', 'fecha_hasta'))->render();
 
-        $pdf = \PDF::loadView('liquidaciones.pdf_index',compact('liquidaciones', 'chofer', 'taxi'));
+        $pdf = \PDF::loadView('liquidaciones.pdf_index',
+            compact('liquidaciones', 'chofer', 'taxi', 'fecha_desde', 'fecha_hasta' ));
         return $pdf->stream();
     }
 }

@@ -5,23 +5,27 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
-				<div class="panel-heading">Liquidaciones</div>
+				<div class="panel-heading">Liquidaciones
+					
+			    </div>
 
 				<div class="panel-body">
-					{!! Form::model(Request::all(), ['route' => 'liquidaciones.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
+					{!! Form::model(Request::all(), ['route' => 'liquidaciones.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left ', 'role' => 'search'])!!}
 				  <div class="form-group">
+				  	<a class="btn btn-info pull-left" href="{{ route('liquidaciones.create') }}" role="button">
+			            Ingresar Liquidacion
+			        </a>
 				    {!! Form::select('taxi_id',$listaTaxis, null, ['class' => 'form-control', 'id' => 'listaTaxis']) !!}
 				    {!! Form::select('chofer_id', $listaChoferes, null, ['class' => 'form-control', 'id' => 'listaChoferes']) !!}
 				    {!! Form::date('fecha_desde', null , ['class' => 'form-control', 'id' => 'fechaDesde']) !!}
 				    {!! Form::date('fecha_hasta', null , ['class' => 'form-control', 'id' => 'fechaHasta']) !!}
+				    @if(isset($filtros))
+				    	{!! link_to_route('pdf', 'PDF', $filtros, 
+				    		array('class'=>'btn btn-info','role'=>'button' )) !!}
+				    @endif
 				  </div>
 				{!! Form::close() !!}				
 
-				<p>
-			        <a class="btn btn-info" href="{{ route('liquidaciones.create') }}" role="button">
-			            Ingresar Liquidacion
-			        </a>
-			    </p>
 					<table class="table table-striped">
 						<tr>
 							<th>
